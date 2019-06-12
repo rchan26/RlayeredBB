@@ -1,5 +1,3 @@
-**Note:** I have not completed documenting and exporting the functions in the `R/` folder in this package - on my to do list.
-
 ## To install, use `install_github` from `devtools` package
 
 ```
