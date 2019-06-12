@@ -20,7 +20,7 @@
 #'
 #' @examples
 #' # simulate a minimum of a Brownian bridge between 0 and 1 in time [0,1]
-#' bb_min(x=0, y=0, s=0, t=1, a1=-1, a2 = 0)
+#' bb_min(x=0, y=0, s=0, t=1, a1 = -1, a2 = 0)
 #'
 #' @export
 bb_min <- function(x, y, s, t, a1, a2) {
@@ -61,7 +61,7 @@ bb_min <- function(x, y, s, t, a1, a2) {
   return(list('min' = m, 'tau' = tau))
 }
 
-#' Brownian bridge maximum point simulatiion
+#' Brownian bridge maximum point simulation
 #'
 #' Simulates the maximum value of a Brownian bridge
 #'
@@ -76,7 +76,7 @@ bb_min <- function(x, y, s, t, a1, a2) {
 #'
 #' @examples
 #' # simulate a maximum of a Brownian bridge between 0 and 1 in time [0,1]
-#' bb_min(x=0, y=0, s=0, t=1, a1=0, a2 = 1)
+#' bb_min(x=0, y=0, s=0, t=1, a1 = 0, a2 = 1)
 #'
 #' @export
 bb_max <- function(x, y, s, t, a1, a2) {
@@ -96,6 +96,25 @@ bb_max <- function(x, y, s, t, a1, a2) {
 
 ######################################## minimum Bessel Bridges simulation ########################################
 
+#' Bessel Bridge point sampler given minimum
+#'
+#' This function simulates a point of a Bessel bridge at time q, given minimum occurs at time tau
+#'
+#' @param x start value of Bessel bridge
+#' @param y end value of Bessel bridge
+#' @param s start value of Bessel bridge
+#' @param t end value of Bessel bridge
+#' @param min minumum point
+#' @param tau time of minimum point
+#' @param q time of simulation
+#'
+#' @return simulated point of the Bessel bridge at time q
+#'
+#' @examples
+#' # simulating a point at q=0.2 for a Bessel bridge starting at 0 and ending at 0 in time [0,1] given minimum is at -0.4 at time 0.6
+#' min_bes_bridge_sim(x = 0, y = 0, s = 0, t = 1, min = -0.4, tau = 0.6, q = 0.2)
+#'
+#' @export
 min_bes_bridge_sim <- function(x, y, s, t, min, tau, q) {
   # returns a minimum Bessel Bridge simulation at time q given the Brownian bridge has minimum, min, at time tau
 
@@ -114,6 +133,26 @@ min_bes_bridge_sim <- function(x, y, s, t, min, tau, q) {
   return(W)
 }
 
+#' Bessel Bridge path sampler given minimum
+#'
+#' This function simulates a path of a Bessel bridge at given times, given minimum occurs at time tau
+#'
+#' @param x start value of Bessel bridge
+#' @param y end value of Bessel bridge
+#' @param s start value of Bessel bridge
+#' @param t end value of Bessel bridge
+#' @param min minumum point
+#' @param tau time of minimum point
+#' @param times vector of real numbers to simulate Bessel bridge
+#' @param plot boolean value: defaults to F, determines whether or not to plot the simulated Bessel bridge
+#'
+#' @return matrix of the simulated Bessel bridge path, first row is points X, second row are corresponding times
+#'
+#' @examples
+#' # simulating a path at times=c(0.2, 0.4, 0.8) for a Bessel bridge starting at 0 and ending at 0 in time [0,1] given minimum is at -0.4 at time 0.6
+#' min_bes_bridge_path(x = 0, y = 0, s = 0, t = 1, min = -0.4, tau = 0.6, times = c(0.2, 0.4, 0.8))
+#'
+#' @export
 min_bes_bridge_path <- function(x, y, s, t, min, tau, times, plot = FALSE) {
   # returns a matrix
   # first row is the values of the simulated Bessel bridge
@@ -178,6 +217,25 @@ min_bes_bridge_path <- function(x, y, s, t, min, tau, times, plot = FALSE) {
 
 ######################################## maximum Bessel Bridges simulation ########################################
 
+#' Bessel Bridge point sampler given maximum
+#'
+#' This function simulates a point of a Bessel bridge at time q, given maximum occurs at time tau
+#'
+#' @param x start value of Bessel bridge
+#' @param y end value of Bessel bridge
+#' @param s start value of Bessel bridge
+#' @param t end value of Bessel bridge
+#' @param max maxumum point
+#' @param tau time of maximum point
+#' @param q time of simulation
+#'
+#' @return simulated point of the Bessel bridge at time q
+#'
+#' @examples
+#' # simulating a point at q=0.2 for a Bessel bridge starting at 0 and ending at 0 in time [0,1] given maximum is at -0.4 at time 0.6
+#' max_bes_bridge_sim(x = 0, y = 0, s = 0, t = 1, max = 0.4, tau = 0.6, q = 0.2)
+#'
+#' @export
 max_bes_bridge_sim <- function(x, y, s, t, max, tau, q) {
   # returns a maximum Bessel Bridge simulation at time q given the Brownian bridge has maximum at time tau
 
@@ -188,6 +246,26 @@ max_bes_bridge_sim <- function(x, y, s, t, max, tau, q) {
   return(-W)
 }
 
+#' Bessel Bridge path sampler given maximum
+#'
+#' This function simulates a path of a Bessel bridge at given times, given maximum occurs at time tau
+#'
+#' @param x start value of Bessel bridge
+#' @param y end value of Bessel bridge
+#' @param s start value of Bessel bridge
+#' @param t end value of Bessel bridge
+#' @param max maxumum point
+#' @param tau time of maximum point
+#' @param times vector of real numbers to simulate Bessel bridge
+#' @param plot boolean value: defaults to F, determaxes whether or not to plot the simulated Bessel bridge
+#'
+#' @return matrix of the simulated Bessel bridge path, first row is points X, second row are corresponding times
+#'
+#' @examples
+#' # simulating a path at times=c(0.2, 0.4, 0.8) for a Bessel bridge starting at 0 and ending at 0 in time [0,1] given maximum is at -0.4 at time 0.6
+#' max_bes_bridge_path(x = 0, y = 0, s = 0, t = 1, max = 0.4, tau = 0.6, times = c(0.2, 0.4, 0.8))
+#'
+#' @export
 max_bes_bridge_path <- function(x, y, s, t, max, tau, times, plot = FALSE) {
   # returns a matrix
   # first row is the values of the simulated Bessel bridge

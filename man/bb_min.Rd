@@ -27,6 +27,6 @@ Simulates the minimum value of a Brownian bridge
 }
 \examples{
 # simulate a minimum of a Brownian bridge between 0 and 1 in time [0,1]
-bb_min(x=0, y=0, s=0, t=1, a1=-1, a2 = 0)
+bb_min(x=0, y=0, s=0, t=1, a1 = -1, a2 = 0)
 
 }

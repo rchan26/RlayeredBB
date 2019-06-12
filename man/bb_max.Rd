@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_bessel_bridge.R
 \name{bb_max}
 \alias{bb_max}
-\title{Brownian bridge maximum point simulatiion}
+\title{Brownian bridge maximum point simulation}
 \usage{
 bb_max(x, y, s, t, a1, a2)
 }
@@ -27,6 +27,6 @@ Simulates the maximum value of a Brownian bridge
 }
 \examples{
 # simulate a maximum of a Brownian bridge between 0 and 1 in time [0,1]
-bb_min(x=0, y=0, s=0, t=1, a1=0, a2 = 1)
+bb_min(x=0, y=0, s=0, t=1, a1 = 0, a2 = 1)
 
 }

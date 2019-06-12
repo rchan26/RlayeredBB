@@ -10,6 +10,26 @@
 
 ######################################## sums required for Cauchy sequences ########################################
 
+#' Calculate interval: [S^{gamma}_{2k+1}, S^{gamma}_{2k}]
+#'
+#' This function calculates the interval [S^{gamma}_{2k+1}, S^{gamma}_{2k}] for given k
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start value of Brownian bridge
+#' @param t end value of Brownian bridge
+#' @param l lower bound of Brownian bridge
+#' @param v upper bound of Brownian bridge
+#' @param k integer value
+#' @param previous_values defaults to NULL: but if k >= 2, then can pass the interval 
+#'                        for (k-1), i.e. a vector of [S^{gamma}_{2k-1}, S^{gamma}_{2k-2}]
+#'
+#' @return vector of two values, S^{gamma}_{2k+1} and S^{gamma}_{2k}
+#'
+#' @examples
+#' calc_SgammaK_intervals(x = 0, y = 0, s = 0, t = 1, l = -2, v = 1, k = 1)
+#'
+#' @export
 calc_SgammaK_intervals <- function(x, y, s, t, l, v, k, previous_values = NULL) {
   # for given k, this function calculates and returns the interval (S_{2k+1}^{gamma}, S_{2k}^{gamma})
   # if previous values for (S_{2k+1}^{gamma}, S_{2k}^{gamma}) for (k-1) are given (VECTOR PASSED MUST BE IN THIS FORM)
@@ -43,6 +63,26 @@ calc_SgammaK_intervals <- function(x, y, s, t, l, v, k, previous_values = NULL) 
   }
 }
 
+#' Calculate interval: [S^{delta,1}_{2k+1}, S^{delta,1}_{2k}]
+#'
+#' This function calculates the interval [S^{delta,1}_{2k+1}, S^{delta, 1}_{2k}] (case where min(x,y) > min)
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start value of Brownian bridge
+#' @param t end value of Brownian bridge
+#' @param min minimum of Brownian bridge
+#' @param v upper bound of Brownian bridge
+#' @param k integer value
+#' @param previous_values defaults to NULL: but if k >= 2, then can pass the interval 
+#'                        for (k-1), i.e. a vector of [S^{delta,1}_{2k-1}, S^{delta,1}_{2k-2}]
+#'
+#' @return vector of two values, S^{delta,1}_{2k+1} and S^{delta,1}_{2k}
+#'
+#' @examples
+#' calc_SdeltaK_1_intervals(x = 0, y = 0, s = 0, t = 1, min = -2, v = 1, k = 1)
+#'
+#' @export
 calc_SdeltaK_1_intervals <- function(x, y, s, t, min, v, k, previous_values = NULL) {
   # for given k, this function calculates and returns the interval (S_{2k+1}^{delta,1}, S_{2k}^{delta,1})
   # if previous values for (S_{2k+1}^{delta,1}, S_{2k}^{delta,1}) for (k-1) are given (VECTOR PASSED MUST BE IN THIS FORM)
@@ -79,6 +119,27 @@ calc_SdeltaK_1_intervals <- function(x, y, s, t, min, v, k, previous_values = NU
   }
 }
 
+#' Calculate interval: [S^{delta,2}_{2k+1}, S^{delta,2}_{2k}]
+#'
+#' This function calculates the interval [S^{delta,2}_{2k+1}, S^{delta, 2}_{2k}] (case where min(x,y) == min)
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start value of Brownian bridge
+#' @param t end value of Brownian bridge
+#' @param min minimum of Brownian bridge
+#' @param v upper bound of Brownian bridge
+#' @param k integer value
+#' @param previous_values defaults to NULL: but if k >= 2, then can pass the interval 
+#'                        for (k-1), i.e. a vector of [S^{delta,2}_{2k-1}, S^{delta,2}_{2k-2}]
+#'
+#' @return vector of two values, S^{delta,2}_{2k+1} and S^{delta,2}_{2k}
+#'
+#' @examples
+#' K = ceiling(sqrt((1)+(abs(1-(-2))*abs(1-(-2))))/(2*abs(1-(-2))))
+#' calc_SdeltaK_2_intervals(x = -2, y = 0, s = 0, t = 0, min = -2, v = 1, k = K)
+#'
+#' @export
 calc_SdeltaK_2_intervals <- function(x, y, s, t, min, v, k, previous_values = NULL) {
   # for given k, this function calculates and returns the interval (S_{2k+1}^{delta,2}, S_{2k}^{delta,2})
   # if previous values for (S_{2k+1}^{delta,2}, S_{2k}^{delta,2}) for (k-1) are given (VECTOR PASSED MUST BE IN THIS FORM)
@@ -108,6 +169,31 @@ calc_SdeltaK_2_intervals <- function(x, y, s, t, min, v, k, previous_values = NU
   }
 }
 
+#' Calculate interval: [S^{delta}_{2k+1}, S^{delta}_{2k}]
+#'
+#' This function calculates the interval [S^{delta}_{2k+1}, S^{delta}_{2k}] (case where min(x,y) > min or where min(x,y) == min)
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start value of Brownian bridge
+#' @param t end value of Brownian bridge
+#' @param min minimum of Brownian bridge
+#' @param v upper bound of Brownian bridge
+#' @param k integer value
+#' @param previous_values defaults to NULL: but if k >= 2, then can pass the interval 
+#'                        for (k-1), i.e. a vector of [S^{delta}_{2k-1}, S^{delta}_{2k-2}]
+#'
+#' @return vector of two values, S^{delta}_{2k+1} and S^{delta}_{2k}
+#'
+#' @examples
+#' # case where min(x,y ) > min
+#' calc_SdeltaK_1_intervals(x = 0, y = 0, s = 0, t = 1, min = -2, v = 1, k = 1)
+#'
+#' # case where min(x,y) == min
+#' K = ceiling(sqrt((1)+(abs(1-(-2))*abs(1-(-2))))/(2*abs(1-(-2))))
+#' calc_SdeltaK_2_intervals(x = -2, y = 0, s = 0, t = 0, min = -2, v = 1, k = K)
+#'
+#' @export
 calc_SdeltaK_intervals <- function(x, y, s, t, min, v, k, previous_values = NULL) {
   # for given k, this function calculates and returns the interval (S_{2k+1}^{delta}, S_{2k}^{delta})
   # if previous values for (S_{2k+1}^{delta}, S_{2k}^{delta}) for (k-1) are given (VECTOR PASSED MUST BE IN THIS FORM)
@@ -127,6 +213,21 @@ calc_SdeltaK_intervals <- function(x, y, s, t, min, v, k, previous_values = NULL
 
 ######################################## Bessel layer simulation ########################################
 
+
+#' Bessel Layer simulation
+#'
+#' Simulates a Bessel layer l for a given sequence a
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start time of Brownian bridge
+#' @param t end time of Brownian bridge
+#' @param a vector/sequence of numbers
+#'
+#' @examples
+#' simulate_bessel_layer(x = 0, y = 0, s = 0, t = 1, a = seq(0.1, 0.5, 0.1))
+#'
+#' @export
 simulate_bessel_layer <- function(x, y, s, t, a) {
   # given an increasing sequence of values, a, this function returns a Bessel layer,
   # for which a BB starting at x, ending at y, between [s,t] is contained
@@ -164,6 +265,27 @@ simulate_bessel_layer <- function(x, y, s, t, a) {
 
 ######################################## intermediate point simulation for layered Brownian bridge ########################################
 
+#' Layered Brownian Bridge sampler
+#'
+#' This function simulates a layered Brownian Bridge given a Bessel layer, at given times
+#'
+#' @param x start value of Brownian bridge
+#' @param y end value of Brownian bridge
+#' @param s start value of Brownian bridge
+#' @param t end value of Brownian bridge
+#' @param a vector/sequence of numbers
+#' @param l integer number denoting Bessel layer, i.e. Brownian bridge is contained in [min(x,y)-a[l], max(x,y)+a[l]]
+#' @param sim_times vector of real numbers to simulate Bessel bridge
+#'
+#' @return matrix of the simulated layered Brownian bridge path, first row is points X, second row are corresponding times
+#'
+#' @examples
+#' # simulate Bessel layer
+#' bes_layer <- simulate_bessel_layer(x = 0, y = 0, s = 0, t = 1, a = seq(0.1, 1.0, 0.1))
+#' # simulate layered Brownian bridge
+#' simulate_layered_brownian_bridge_bessel(x = 0, y = 0, s = 0, t = 1, a = bes_layer$a, l = bes_layer$l, sim_times = seq(0.2, 0.8, 0.2))
+#'
+#' @export
 simulate_layered_brownian_bridge_bessel <- function(x, y, s, t, a, l, sim_times) {
   # x,y,s,t,l are real numbers
   # l is the Bessel layer that the simulated layered BB will be contained within

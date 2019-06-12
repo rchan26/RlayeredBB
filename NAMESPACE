@@ -2,3 +2,13 @@
 
 export(bb_max)
 export(bb_min)
+export(calc_SdeltaK_1_intervals)
+export(calc_SdeltaK_2_intervals)
+export(calc_SdeltaK_intervals)
+export(calc_SgammaK_intervals)
+export(max_bes_bridge_path)
+export(max_bes_bridge_sim)
+export(min_bes_bridge_path)
+export(min_bes_bridge_sim)
+export(simulate_bessel_layer)
+export(simulate_layered_brownian_bridge_bessel)
